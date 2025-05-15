@@ -8,7 +8,7 @@ ENV URL=https://www.aapanel.com/script/install_7.0_en.sh
 # Install dependencies
 RUN apt-get update && \
     apt-get install -y curl wget sudo locales tzdata cron && \
-    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime && \
     dpkg-reconfigure --frontend noninteractive tzdata
 
 # Create persistent directories
