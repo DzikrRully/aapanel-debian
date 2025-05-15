@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  aapanel:
+    build:
+      context: .  # Make sure Dockerfile is in this directory
+      dockerfile: Dockerfile
+    container_name: aapanel
+    ports:
+      - "8888:8888"
+    volumes:
+      - aapanel_www:/www
+      - aapanel_server:/www/server
+    restart: unless-stopped
+
+volumes:
+  aapanel_www:
+  aapanel_server:
