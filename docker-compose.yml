@@ -3,16 +3,19 @@ version: '3.8'
 services:
   aapanel:
     build:
-      context: .  # Make sure Dockerfile is in this directory
+      context: .
       dockerfile: Dockerfile
     container_name: aapanel
-    ports:
-      - "8888:8888"
-    volumes:
-      - aapanel_www:/www
-      - aapanel_server:/www/server
     restart: unless-stopped
-
-volumes:
-  aapanel_www:
-  aapanel_server:
+    ports:
+      - "7800:7800"  # Panel akses
+      - "80:80"      # HTTP website
+      - "443:443"    # HTTPS
+      - "21:21"      # FTP (opsional)
+      - "22:22"      # SSH (opsional)
+    volumes:
+      - ./data/wwwroot:/www/wwwroot
+      - ./data/server_data:/www/server/data
+      - ./data/vhost:/www/server/panel/vhost
+    environment:
+      - TZ=Asia/Jakarta
